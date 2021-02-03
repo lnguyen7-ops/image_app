@@ -10,11 +10,11 @@ from skimage.metrics import structural_similarity as ssim
 st.write("# Load image from local")
 img = st.file_uploader(label="Upload image", accept_multiple_files=False)
 if img:
-	st.image(img, width=600)
+	#st.image(img, width=600)
 
-#fig,ax = plt.subplots()
-#ax.imshow(Image.open(img))
-#st.pyplot(fig)
+	fig,ax = plt.subplots()
+	ax.imshow(Image.open(img))
+	st.pyplot(fig)
 
 #img_open = Image.open(img)
 #st.write(type(img_open))
