@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 import pafy
-import cv2
+#import cv2
 
 from skimage.metrics import structural_similarity as ssim
 
