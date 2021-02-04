@@ -57,7 +57,9 @@ def show_2_imgs(target, img=None):
 #############################################################
 # LOAD TARGET IMAGE
 st.sidebar.write("# Load image from local")
-img_target = st.sidebar.file_uploader(label="Upload image", type=["jpg", "jpeg", "png"])
+img_target = st.sidebar.file_uploader(label="Upload image", 
+	type=["jpg", "jpeg", "png"],
+	key="i")
 
 # if user upload a target image
 if img_target is not None:
