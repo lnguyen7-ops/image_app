@@ -81,7 +81,7 @@ if img_target is not None:
 		frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 		# check if the current frame is similar to the target above a threshold
 		# Here I only check every 10 frames to save time.
-		if i%10==0 and struc_sim(img_target_RGB, frame) >= threshold:
+		if i%20==0 and struc_sim(img_target_RGB, frame) >= threshold:
 			# show the ssim value
 			st.text(f'**Found match !**\
 					\nFrame number: {i+1}\
