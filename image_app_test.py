@@ -94,3 +94,18 @@ if img_target is not None:
 	if not found:
 		st.write("### Target image NOT from this video.")
 		show_2_imgs(img_target_RGB, None)
+
+# Adjusting the width of the main page.
+def _max_width_():
+    max_width_str = f"max-width: 500px;"
+    st.markdown(
+        f"""
+    <style>
+    .reportview-container .main .block-container{{
+        {max_width_str}
+    }}
+    </style>    
+    """,
+        unsafe_allow_html=True,
+    )
+_max_width_()
