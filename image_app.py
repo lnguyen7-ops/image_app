@@ -32,8 +32,13 @@ def struc_sim(target, img):
 	param: target: numpy array image in "RGB"
 	param: img: numpy array image in "RGB"
 	'''
-	# target image size
+	# target image original size.
 	target_dim = (target.shape[1], target.shape[0])
+	# if target original size > 500, downsize the image
+	if target_dim[0] > 500 or target_dim[1] > 500:
+		target_dim = tuple([int(d*0.5) for d in target_dim])
+	# Downsize target image to be smaller
+	target = cv2.resize(target, target_dim, interpolation=cv2.INTER_AREA)
 	# resize img to match target size
 	img = cv2.resize(img, target_dim, interpolation=cv2.INTER_AREA)
 	# convert target image to gray scale
@@ -72,7 +77,7 @@ if img_target is not None:
 	url = "https://www.youtube.com/watch?v=VvL5Q7YVyWM"
 	frame_generator, num_frames = get_video_frames(url)
 	st.write(f"Video url: {url} \n\n **Total in video: {num_frames} frames**")
-
+	
 	# LOOP to search for match frame
 	threshold = 0.8
 	found = False
@@ -82,8 +87,8 @@ if img_target is not None:
 		# convert current frame from BGR to RGB format
 		frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 		# check if the current frame is similar to the target above a threshold
-		# Here I only check every 10 frames to save time.
-		if i%20==0 and struc_sim(img_target_RGB, frame) >= threshold:
+		# Here I only check every 20 frames to save time.
+		if i%60==0 and struc_sim(img_target_RGB, frame) >= threshold:
 			# show the ssim value
 			st.text(f'**Found match !**\
 					\nFrame number: {i+1}\
@@ -96,3 +101,4 @@ if img_target is not None:
 	if not found:
 		st.write("### Target image NOT from this video.")
 		show_2_imgs(img_target_RGB, None)
+	
