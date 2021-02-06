@@ -35,8 +35,8 @@ def struc_sim(target, img):
 	# target image original size.
 	target_dim = (target.shape[1], target.shape[0])
 	# if target original size > 500, downsize the image
-	if target_dim[0] > 500 or target_dim[1] > 500:
-		target_dim = tuple([int(d*0.5) for d in target_dim])
+	if target_dim[0] > 1000 or target_dim[1] > 1000:
+		target_dim = tuple([int(d*0.25) for d in target_dim])
 	# Downsize target image to be smaller
 	target = cv2.resize(target, target_dim, interpolation=cv2.INTER_AREA)
 	# resize img to match target size
